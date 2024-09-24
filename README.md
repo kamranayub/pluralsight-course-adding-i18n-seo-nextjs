@@ -1,8 +1,8 @@
-# {$COURSE_NAME$ Pluralsight Course
+# Adding i18n and SEO in Next.js 14 Pluralsight Course
 
-This repository is for the Pluralsight course **[$COURSE_NAME$]($COURSE_LINK$)**. The license is Apache 2.0.
+This repository is for the Pluralsight course **[Adding Internationalization and SEO in Next.js 14](https://pluralsight.com/library/course/adding-internationalization-seo-nextjs-14)**. The license is Apache 2.0.
 
-[![Course overview screenshot]($COURSE_HERO_IMAGE$)]($COURSE_LINK$)
+[![Course overview screenshot]($COURSE_HERO_IMAGE$)](https://pluralsight.com/library/course/adding-internationalization-seo-nextjs-14)
 
 
 ## Table of Contents
@@ -15,11 +15,11 @@ This repository is for the Pluralsight course **[$COURSE_NAME$]($COURSE_LINK$)**
 
 *None yet*
 
-Please report course issues using the [Issues](issues) page or the Pluralsight discussion page.
+Please report course issues using the [Issues](issues) page or through the feedback mechanism in the Pluralsight app.
 
 ## Updates
 
-- **$RELEASE_DATE$**
+- **November 2024**
   - Initial release 🎉
 
 ## Additional Resources
