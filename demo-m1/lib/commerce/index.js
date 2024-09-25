@@ -458,10 +458,6 @@ export async function getProductReviews(productId) {
   ];
 }
 
-export function revalidate(req) {
-  return new NextResponse({});
-}
-
 const reshapeProduct = (product, filterHiddenProducts = true) => {
   if (!product || (filterHiddenProducts && product.tags.includes(HIDDEN_PRODUCT_TAG))) {
     return undefined;

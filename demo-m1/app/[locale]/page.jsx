@@ -9,7 +9,7 @@ import { ProductReview } from 'components/product/product-review';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 import { getProduct, getProductRecommendations, getProductReviews } from 'lib/commerce';
 import { Suspense } from 'react';
-import Link from 'next/link';
+import Link from 'components/locale-link';
 
 export async function generateMetadata({
   params
@@ -80,14 +80,14 @@ export default async function ProductPage({ params }) {
         <Suspense fallback={<p className="p-4">Loading reviews...</p>}>
           <ProductReviews id={product.id} />
         </Suspense>
-        <RelatedProducts id={product.id} />
+        <RelatedProducts id={product.id} locale={params.locale} />
       </div>
       <Footer />
     </ProductProvider>
   );
 }
 
-async function RelatedProducts({ id }) {
+async function RelatedProducts({ id, locale }) {
   const relatedProducts = await getProductRecommendations(id);
 
   if (!relatedProducts.length) return null;
