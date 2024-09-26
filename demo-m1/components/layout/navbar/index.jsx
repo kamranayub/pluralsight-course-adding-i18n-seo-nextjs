@@ -1,7 +1,7 @@
 import CartContainer from 'components/cart/container';
 import LogoSquare from 'components/logo-square';
 import { getMenu } from 'lib/commerce';
-import Link from 'next/link';
+import Link from 'components/locale-link';
 import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';
 import Search, { SearchSkeleton } from './search';

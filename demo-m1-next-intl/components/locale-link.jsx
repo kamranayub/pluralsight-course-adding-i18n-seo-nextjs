@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from "next/navigation";
-import Link from "next/link";
+import { Link } from 'i18n/routing';
 
 export default function LocaleLink({ href, children, ...props }) {
   const { locale = '' } = useParams();

@@ -4,5 +4,8 @@
     },
     "ProductReviews": {
         "heading": "Reviews"
+    },
+    "Hello": {
+        "greeting": "Hello"
     }
 }

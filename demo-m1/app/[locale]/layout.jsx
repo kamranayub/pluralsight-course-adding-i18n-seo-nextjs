@@ -6,7 +6,7 @@ import { cookies } from 'next/headers';
 import { Toaster } from 'sonner';
 import './globals.css';
 
-export default async function RootLayout({ children, params: { locale = 'en' } }) {
+export default async function RootLayout({ children, params: { locale } }) {
   const cartId = cookies().get('cartId')?.value;
   // Don't await the fetch, pass the Promise to the context provider
   const cart = getCart(cartId);

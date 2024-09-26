@@ -36,7 +36,7 @@ function redirectRequestWithLocale(request) {
   return NextResponse.redirect(request.nextUrl);
 }
 
-function getLocale({ headers }) {
+export function getLocale({ headers }) {
   const languages = new Negotiator({ 
     headers: { 'accept-language': headers.get('accept-language') }
   }).languages();

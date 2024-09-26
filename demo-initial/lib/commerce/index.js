@@ -440,7 +440,7 @@ export async function getProductRecommendations(productId) {
 }
 
 export async function getProductReviews(productId) {
-  return [
+  const reviews = [
     {
       id: 'review1',
       author: 'user123',
@@ -456,6 +456,7 @@ export async function getProductReviews(productId) {
       body: 'The product was okay, but it didn\'t meet my expectations.',
     }
   ];
+  return reviews;
 }
 
 const reshapeProduct = (product, filterHiddenProducts = true) => {

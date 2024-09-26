@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'components/locale-link';
 
 import FooterMenu from 'components/layout/footer-menu';
 import LogoSquare from 'components/logo-square';

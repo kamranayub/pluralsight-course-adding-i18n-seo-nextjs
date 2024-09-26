@@ -4,5 +4,8 @@
     },
     "ProductReviews": {
         "heading": "Avis"
+    },
+    "Hello": {
+        "greeting": "Bonjour"
     }
 }

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from 'i18n/routing';
 import { GeistSans } from 'geist/font/sans';
 
 import './[locale]/globals.css';
