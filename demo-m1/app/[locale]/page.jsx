@@ -78,16 +78,16 @@ export default async function ProductPage({ params }) {
           </div>
         </div>
         <Suspense fallback={<p className="p-4">Loading reviews...</p>}>
-          <ProductReviews id={product.id} />
+          <ProductReviews id={product.id} locale={params.locale} />
         </Suspense>
-        <RelatedProducts id={product.id} locale={params.locale} />
+        <RelatedProducts id={product.id} />
       </div>
       <Footer />
     </ProductProvider>
   );
 }
 
-async function RelatedProducts({ id, locale }) {
+async function RelatedProducts({ id }) {
   const relatedProducts = await getProductRecommendations(id);
 
   if (!relatedProducts.length) return null;
@@ -124,14 +124,15 @@ async function RelatedProducts({ id, locale }) {
   );
 }
 
-async function ProductReviews({ id }) {
-  const productReviews= await getProductReviews(id)
+async function ProductReviews({ id, locale }) {
+  const productReviews = await getProductReviews(id)
+  const { default: { ProductReviews: messages } } = await import(`../../messages/${locale}.json`);
 
   if (!productReviews.length) return null;
 
   return (
     <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">Reviews</h2>
+      <h2 className="mb-4 text-2xl font-bold">{messages.heading}</h2>
       <div className="w-full gap-4 pt-1">
         {productReviews.map((review) => (
           <ProductReview key={review.id} review={review} />

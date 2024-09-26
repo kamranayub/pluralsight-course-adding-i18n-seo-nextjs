@@ -6,15 +6,24 @@ const locales = ['fr', 'en'];
 const defaultLocale = 'en';
 
 export function middleware(request) {
-  // Check if there is any supported locale in the pathname
+  if (requestHasLocaleAlready(request)) {
+    return;
+  }
+
+  return redirectRequestWithLocale(request);
+}
+
+function requestHasLocaleAlready(request) {
   const { pathname } = request.nextUrl;
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  if (pathnameHasLocale) {
-    return;
-  }
+  return pathnameHasLocale;
+}
+
+function redirectRequestWithLocale(request) {
+  const { pathname } = request.nextUrl;
 
   // Redirect if there is no locale
   const locale = getLocale(request);
@@ -27,10 +36,13 @@ export function middleware(request) {
   return NextResponse.redirect(request.nextUrl);
 }
 
-function getLocale(request) {
+function getLocale({ headers }) {
   const languages = new Negotiator({ 
-    headers: { 'accept-language': request.headers.get('accept-language') } 
+    headers: { 'accept-language': headers.get('accept-language') }
   }).languages();
+
+  // -> ['fr', 'en', ...] ordered by priority
+  // -> ['*'] if any language is accepted
 
   console.log('Detected accept-languages', languages);
 

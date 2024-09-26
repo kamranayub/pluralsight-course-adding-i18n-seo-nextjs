@@ -7,7 +7,7 @@ import Price from 'components/price';
 import { DEFAULT_OPTION } from 'lib/constants';
 import { createUrl } from 'lib/utils';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from 'components/locale-link';
 import { Fragment } from 'react';
 import { useFormStatus } from 'react-dom';
 import { redirectToCheckout } from './actions';
