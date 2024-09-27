@@ -7,5 +7,25 @@
     },
     "Hello": {
         "greeting": "Bonjour"
+    },
+    "RelatedProducts": {
+        "heading": "Produits connexes"
+    },
+    "Cart": {
+        "myCart": "Mon panier",
+        "outOfStock": "En rupture de stock",
+        "addToCart": "Ajouter au panier",
+        "closeCart": "Fermer le panier",
+        "cartIsEmpty": "Votre panier est vide.",
+        "shipping": "Livraison",
+        "shippingCalculatedAtCheckout": "Calculé lors du paiement",
+        "total": "Total",
+        "taxes": "Taxes",
+        "proceedToCheckout": "Passer à la caisse"
+    },
+    "Footer": {
+        "copyright": "Tous droits réservés.",
+        "viewSource": "Voir la source originale",
+        "basedOn": "Basé sur Next.js Commerce par ▲ Vercel"
     }
 }

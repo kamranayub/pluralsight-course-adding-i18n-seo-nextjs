@@ -1,21 +1,12 @@
 'use client';
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { useParams, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import defaultMessages from '../../../messages/en.json';
+import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'i18n/translations';
 
 export default function Search() {
   const searchParams = useSearchParams();
-  const { locale } = useParams();
-  const [messages, setMessages] = useState(defaultMessages.Search);
-
-  useEffect(() => {
-    console.log('Loading search messages for locale', locale);
-    import(`../../../messages/${locale}.json`).then(({ Search }) => {
-      setMessages(Search);
-    });
-  }, [locale]);
+  const t = useTranslations('Search');
 
   return (
     <form action="/search" className="w-max-[550px] relative w-full lg:w-80 xl:w-full">
@@ -23,7 +14,7 @@ export default function Search() {
         key={searchParams?.get('q')}
         type="text"
         name="q"
-        placeholder={messages.placeholder}
+        placeholder={t.placeholder}
         autoComplete="off"
         defaultValue={searchParams?.get('q') || ''}
         className="text-md w-full rounded-lg border bg-white px-4 py-2 text-black placeholder:text-neutral-500 md:text-sm dark:border-neutral-800 dark:bg-transparent dark:text-white dark:placeholder:text-neutral-400"

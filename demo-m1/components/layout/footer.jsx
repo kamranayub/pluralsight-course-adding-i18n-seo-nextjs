@@ -4,15 +4,17 @@ import FooterMenu from 'components/layout/footer-menu';
 import LogoSquare from 'components/logo-square';
 import { getMenu } from 'lib/commerce';
 import { Suspense } from 'react';
+import { getTranslations } from 'i18n/server';
 
 const { COMPANY_NAME, SITE_NAME } = process.env;
 
-export default async function Footer() {
+export default async function Footer({ locale }) {
   const menu = await getMenu('footer');
   const currentYear = new Date().getFullYear();
   const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : '');
   const skeleton = 'w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700';
   const copyrightName = COMPANY_NAME || SITE_NAME || '';
+  const t = await getTranslations(locale, 'Footer');
 
   return (
     <footer className="text-sm text-neutral-500 dark:text-neutral-400">
@@ -42,15 +44,15 @@ export default async function Footer() {
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-1 px-4 md:flex-row md:gap-0 md:px-4 min-[1320px]:px-0">
           <p>
             &copy; {copyrightDate} {copyrightName}
-            {copyrightName.length && !copyrightName.endsWith('.') ? '.' : ''} All rights reserved.
+            {copyrightName.length && !copyrightName.endsWith('.') ? '.' : ''} {t.copyright}
           </p>
           <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
           <p>
-            <a href="https://github.com/vercel/commerce">View the original source</a>
+            <a href="https://github.com/vercel/commerce">{t.viewSource}</a>
           </p>
           <p className="md:ml-auto">
             <a href="https://vercel.com" className="text-black dark:text-white">
-              Based on Next.js Commerce by ▲ Vercel
+              {t.basedOn}
             </a>
           </p>
         </div>

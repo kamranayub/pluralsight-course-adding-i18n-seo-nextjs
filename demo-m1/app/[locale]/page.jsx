@@ -9,6 +9,7 @@ import { ProductReview } from 'components/product/product-review';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 import { getProduct, getProductRecommendations, getProductReviews } from 'lib/commerce';
 import { Suspense } from 'react';
+import { getTranslations } from 'i18n/server';
 import Link from 'components/locale-link';
 
 export async function generateMetadata({
@@ -48,7 +49,7 @@ export async function generateMetadata({
 }
 
 export default async function ProductPage({ params }) {
-  const product = await getProduct(params.handle);
+  const product = await getProduct(params.handle, params.locale);
 
   if (!product) return notFound();
 
@@ -80,21 +81,22 @@ export default async function ProductPage({ params }) {
         <Suspense fallback={<p className="p-4">Loading reviews...</p>}>
           <ProductReviews id={product.id} locale={params.locale} />
         </Suspense>
-        <RelatedProducts id={product.id} />
+        <RelatedProducts id={product.id} locale={params.locale} />
       </div>
-      <Footer />
+      <Footer locale={params.locale} />
     </ProductProvider>
   );
 }
 
-async function RelatedProducts({ id }) {
-  const relatedProducts = await getProductRecommendations(id);
+async function RelatedProducts({ id, locale }) {
+  const relatedProducts = await getProductRecommendations(id, locale);
+  const t = await getTranslations(locale, 'RelatedProducts');
 
   if (!relatedProducts.length) return null;
 
   return (
     <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
+      <h2 className="mb-4 text-2xl font-bold">{t.heading}</h2>
       <ul className="flex w-full gap-4 overflow-x-auto pt-1">
         {relatedProducts.map((product) => (
           <li
@@ -125,14 +127,14 @@ async function RelatedProducts({ id }) {
 }
 
 async function ProductReviews({ id, locale }) {
-  const productReviews = await getProductReviews(id)
-  const { default: { ProductReviews: messages } } = await import(`../../messages/${locale}.json`);
+  const productReviews = await getProductReviews(id, locale);
+  const t = await getTranslations(locale, 'ProductReviews');
 
   if (!productReviews.length) return null;
 
   return (
     <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">{messages.heading}</h2>
+      <h2 className="mb-4 text-2xl font-bold">{t.heading}</h2>
       <div className="w-full gap-4 pt-1">
         {productReviews.map((review) => (
           <ProductReview key={review.id} review={review} />
