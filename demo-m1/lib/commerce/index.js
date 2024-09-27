@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 
 const mockProducts = [
@@ -440,7 +439,22 @@ export async function getProductRecommendations(productId) {
 }
 
 export async function getProductReviews(productId) {
- return await fetch('/api/reviews/' + productId);
+  return [
+    {
+      id: 'review1',
+      author: 'user123',
+      title: 'Great product!',
+      rating: 5,
+      body: 'I love this product! It fits perfectly and looks great.',
+    },
+    {
+      id: 'review2',
+      author: 'user789',
+      title: 'Didn\'t like it',
+      rating: 3,
+      body: 'The product was okay, but it didn\'t meet my expectations.',
+    }
+  ];
 }
 
 const reshapeProduct = (product, filterHiddenProducts = true) => {

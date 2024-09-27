@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from "next/navigation";
-import Link from 'components/locale-link';
+import Link from 'next/link';
 
 export default function LocaleLink({ href, children, ...props }) {
   const { locale = '' } = useParams();

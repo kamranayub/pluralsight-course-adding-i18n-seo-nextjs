@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 
 const mockProducts = [
