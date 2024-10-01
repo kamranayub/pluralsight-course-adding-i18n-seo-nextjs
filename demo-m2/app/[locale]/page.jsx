@@ -12,10 +12,19 @@ import { Suspense } from 'react';
 import { Link } from 'i18n/routing';
 import { getTranslations } from 'next-intl/server';
 
-export const metadata = {
-  title: 'Mock Product',
-  description: 'A mock product description'
-};
+// export const metadata = {
+//   title: 'Mock Product',
+//   description: 'A mock product description'
+// };
+
+export async function generateMetadata({ params }) {
+  const product = await getProduct(params.handle);
+
+  return {
+    title: product.seo.title || product.title,
+    description: product.seo.description || product.description
+  }
+}
 
 // export async function generateMetadata({
 //   params
