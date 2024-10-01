@@ -6,47 +6,10 @@ import { Gallery } from 'components/product/gallery';
 import { ProductProvider } from 'components/product/product-context';
 import { ProductDescription } from 'components/product/product-description';
 import { ProductReview } from 'components/product/product-review';
-import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 import { getProduct, getProductRecommendations, getProductReviews } from 'lib/commerce';
 import { Suspense } from 'react';
 import { Link } from 'i18n/routing';
 import { getTranslations } from 'next-intl/server';
-
-export async function generateMetadata({
-  params
-}) {
-  const product = await getProduct(params.handle);
-
-  if (!product) return notFound();
-
-  const { url, width, height, altText: alt } = product.featuredImage || {};
-  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
-
-  return {
-    title: product.seo.title || product.title,
-    description: product.seo.description || product.description,
-    robots: {
-      index: indexable,
-      follow: indexable,
-      googleBot: {
-        index: indexable,
-        follow: indexable
-      }
-    },
-    openGraph: url
-      ? {
-          images: [
-            {
-              url,
-              width,
-              height,
-              alt
-            }
-          ]
-        }
-      : null
-  };
-}
 
 export default async function ProductPage({ params }) {
   const product = await getProduct(params.handle);
