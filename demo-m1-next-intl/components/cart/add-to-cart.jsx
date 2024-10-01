@@ -6,6 +6,7 @@ import { addItem } from 'components/cart/actions';
 import { useProduct } from 'components/product/product-context';
 import { useFormState } from 'react-dom';
 import { useCart } from './cart-context';
+import { useTranslations } from 'next-intl';
 
 function SubmitButton({
   availableForSale,
@@ -14,16 +15,16 @@ function SubmitButton({
   const buttonClasses =
     'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white';
   const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
+  const t = useTranslations('Cart');
 
   if (!availableForSale) {
     return (
       <button disabled className={clsx(buttonClasses, disabledClasses)}>
-        Out Of Stock
+        {t('outOfStock')}
       </button>
     );
   }
 
-  console.log(selectedVariantId);
   if (!selectedVariantId) {
     return (
       <button
@@ -34,7 +35,7 @@ function SubmitButton({
         <div className="absolute left-0 ml-4">
           <PlusIcon className="h-5" />
         </div>
-        Add To Cart
+        {t('addToCart')}
       </button>
     );
   }
@@ -49,7 +50,7 @@ function SubmitButton({
       <div className="absolute left-0 ml-4">
         <PlusIcon className="h-5" />
       </div>
-      Add To Cart
+      {t('addToCart')}
     </button>
   );
 }
