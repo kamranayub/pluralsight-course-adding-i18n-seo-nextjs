@@ -2,6 +2,9 @@
     "Search": {
         "placeholder": "Rechercher des produits..."
     },
+    "ProductPage": {
+        "loadingReviews": "Chargement des avis..."
+    },
     "ProductReviews": {
         "heading": "Avis"
     },

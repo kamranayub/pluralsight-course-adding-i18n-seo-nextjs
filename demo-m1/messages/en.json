@@ -2,6 +2,9 @@
     "Search": {
         "placeholder": "Search for products..."
     },
+    "ProductPage": {
+        "loadingReviews": "Loading reviews..."
+    },
     "ProductReviews": {
         "heading": "Reviews"
     },

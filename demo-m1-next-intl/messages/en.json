@@ -2,10 +2,33 @@
     "Search": {
         "placeholder": "Search for products..."
     },
+    "ProductPage": {
+        "loadingReviews": "Loading reviews..."
+    },
     "ProductReviews": {
         "heading": "Reviews"
     },
     "Hello": {
         "greeting": "Hello"
+    },
+    "RelatedProducts": {
+        "heading": "Related Products"
+    },
+    "Cart": {
+        "myCart": "My Cart",
+        "outOfStock": "Out Of Stock",
+        "addToCart": "Add to Cart",
+        "closeCart": "Close cart",
+        "cartIsEmpty": "Your cart is empty.",
+        "shipping": "Shipping",
+        "shippingCalculatedAtCheckout": "Calculated at checkout",
+        "total": "Total",
+        "taxes": "Taxes",
+        "proceedToCheckout": "Proceed to checkout"
+    },
+    "Footer": {
+        "copyright": "All rights reserved.",
+        "viewSource": "View the original source",
+        "basedOn": "Based on Next.js Commerce by ▲ Vercel"
     }
 }

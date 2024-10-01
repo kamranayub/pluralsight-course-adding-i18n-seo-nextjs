@@ -50,8 +50,10 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }) {
   const product = await getProduct(params.handle, params.locale);
-
+  
   if (!product) return notFound();
+
+  const t = await getTranslations(params.locale, 'ProductPage');
 
   return (
     <ProductProvider>
@@ -78,7 +80,7 @@ export default async function ProductPage({ params }) {
             </Suspense>
           </div>
         </div>
-        <Suspense fallback={<p className="p-4">Loading reviews...</p>}>
+        <Suspense fallback={<p className="p-4">{t('loadingReviews')}</p>}>
           <ProductReviews id={product.id} locale={params.locale} />
         </Suspense>
         <RelatedProducts id={product.id} locale={params.locale} />
