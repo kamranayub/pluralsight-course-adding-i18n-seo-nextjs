@@ -55,10 +55,6 @@ function getLocale({ headers }) {
 }
 
 export const config = {
-  matcher: [
-    // Skip all API routes (/api), internal paths (_next), shop images (/images), and metadata files
-    '/((?!api|_next/static|_next/image|images|favicon.ico|sitemap.xml|robots.txt).*)'
-    // Optional: only run on root (/) URL
-    // '/'
-  ]
+  // Match only internationalized pathnames
+  matcher: ['/', '/(fr|en)/:path*']
 };
