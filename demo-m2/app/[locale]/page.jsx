@@ -58,6 +58,8 @@ export default async function ProductPage({ params }) {
 
   if (!product) return notFound();
 
+  const t = await getTranslations('ProductPage');
+
   return (
     <ProductProvider>
       <div className="mx-auto max-w-screen-2xl px-4">
@@ -83,7 +85,7 @@ export default async function ProductPage({ params }) {
             </Suspense>
           </div>
         </div>
-        <Suspense fallback={<p className="p-4">Loading reviews...</p>}>
+        <Suspense fallback={<p className="p-4">{t('loadingReviews')}</p>}>
           <ProductReviews id={product.id} />
         </Suspense>
         <RelatedProducts id={product.id} />
@@ -95,12 +97,13 @@ export default async function ProductPage({ params }) {
 
 async function RelatedProducts({ id }) {
   const relatedProducts = await getProductRecommendations(id);
+  const t = await getTranslations('RelatedProducts');
 
   if (!relatedProducts.length) return null;
 
   return (
     <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
+      <h2 className="mb-4 text-2xl font-bold">{t('heading')}</h2>
       <ul className="flex w-full gap-4 overflow-x-auto pt-1">
         {relatedProducts.map((product) => (
           <li
@@ -130,8 +133,8 @@ async function RelatedProducts({ id }) {
   );
 }
 
-async function ProductReviews({ id }) {
-  const productReviews = await getProductReviews(id)
+async function ProductReviews({ id, locale }) {
+  const productReviews = await getProductReviews(id, locale);
   const t = await getTranslations('ProductReviews');
 
   if (!productReviews.length) return null;
