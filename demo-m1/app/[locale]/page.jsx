@@ -80,7 +80,7 @@ export default async function ProductPage({ params }) {
             </Suspense>
           </div>
         </div>
-        <Suspense fallback={<p className="p-4">{t('loadingReviews')}</p>}>
+        <Suspense fallback={<p className="p-4">{t.loadingReviews}</p>}>
           <ProductReviews id={product.id} locale={params.locale} />
         </Suspense>
         <RelatedProducts id={product.id} locale={params.locale} />
