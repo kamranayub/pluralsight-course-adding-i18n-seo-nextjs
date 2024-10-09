@@ -27,5 +27,10 @@
         "copyright": "All rights reserved.",
         "viewSource": "View the original source",
         "basedOn": "Based on Next.js Commerce by ▲ Vercel"
+    },
+    "NotFound": {
+        "title": "Not found",
+        "body": "The resource you're looking for was not found.",
+        "returnHome": "Return to homepage"
     }
 }
