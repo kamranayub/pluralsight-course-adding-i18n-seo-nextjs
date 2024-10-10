@@ -6,10 +6,11 @@ $CommonPaths = @(
     # Add additional shared paths for each module
     ".\LICENSE",
     ".\README.md"
-    ".\demo"
+    ".\demo-initial"
 )
 
 # Example: Module 1
 Compress-Archive -DestinationPath .\.materials\m1.zip -Update -Path ($CommonPaths + @(
-    ".\module-1"
+    ".\demo-m1",
+    ".\demo-m1-next-intl"
 ))
