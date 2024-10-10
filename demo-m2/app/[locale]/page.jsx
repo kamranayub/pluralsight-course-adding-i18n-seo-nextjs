@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
   return {
     title: product.seo.title || product.title,
     description: product.seo.description || product.description
-  }
+  };
 }
 
 // export async function generateMetadata({
@@ -71,6 +71,7 @@ export default async function ProductPage({ params }) {
 
   return (
     <ProductProvider>
+      <StructuredProductMetadata product={product} />
       <div className="mx-auto max-w-screen-2xl px-4">
         <div className="flex flex-col rounded-lg border border-neutral-200 bg-white p-8 md:p-12 lg:flex-row lg:gap-8 dark:border-neutral-800 dark:bg-black">
           <div className="h-full w-full basis-full lg:basis-4/6">
@@ -104,6 +105,31 @@ export default async function ProductPage({ params }) {
   );
 }
 
+async function StructuredProductMetadata({ product }) {
+  const productReviews = await getProductReviews(product.id);
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.seo.title || product.title,
+    description: product.seo.description || product.description,
+    image: product.featuredImage?.url,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue:
+        productReviews.map((review) => review.rating).reduce((acc, rating) => acc + rating, 0) /
+        productReviews.length,
+      reviewCount: productReviews.length
+    }
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 async function RelatedProducts({ id }) {
   const relatedProducts = await getProductRecommendations(id);
   const t = await getTranslations('RelatedProducts');
@@ -119,10 +145,7 @@ async function RelatedProducts({ id }) {
             key={product.handle}
             className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
           >
-            <Link
-              className="relative h-full w-full"
-              href={`/product/${product.handle}`}
-            >
+            <Link className="relative h-full w-full" href={`/product/${product.handle}`}>
               <GridTileImage
                 alt={product.title}
                 label={{
