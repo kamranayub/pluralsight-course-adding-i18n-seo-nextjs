@@ -30,5 +30,10 @@
         "copyright": "Tous droits réservés.",
         "viewSource": "Voir la source originale",
         "basedOn": "Basé sur Next.js Commerce par ▲ Vercel"
+    },
+    "NotFound": {
+        "title": "Non trouvé",
+        "body": "La ressource que vous recherchez est introuvable.",
+        "returnHome": "Retour à la page d'accueil"
     }
 }
