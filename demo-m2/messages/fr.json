@@ -31,6 +31,10 @@
         "viewSource": "Voir la source originale",
         "basedOn": "Basé sur Next.js Commerce par ▲ Vercel"
     },
+    "AboutPage": {
+        "heading": "À propos",
+        "text": "Ceci est la page À propos."
+    },
     "NotFound": {
         "title": "Non trouvé",
         "body": "La ressource que vous recherchez est introuvable.",

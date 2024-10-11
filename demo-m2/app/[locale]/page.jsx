@@ -9,7 +9,7 @@ import { ProductReview } from 'components/product/product-review';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 import { getProduct, getProductRecommendations, getProductReviews } from 'lib/commerce';
 import { Suspense } from 'react';
-import { Link } from 'i18n/routing';
+import { routing, Link } from 'i18n/routing';
 import { getTranslations } from 'next-intl/server';
 
 // export const metadata = {
@@ -20,47 +20,41 @@ import { getTranslations } from 'next-intl/server';
 export async function generateMetadata({ params }) {
   const product = await getProduct(params.handle);
 
+  if (!product) return notFound();
+
+  const { url, width, height, altText: alt } = product.featuredImage || {};
+  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
+  const ogLocaleById = {
+    en: 'en_US',
+    fr: 'fr_FR'
+  };
+
   return {
     title: product.seo.title || product.title,
-    description: product.seo.description || product.description
+    description: product.seo.description || product.description,
+    robots: {
+      index: indexable,
+      follow: indexable,
+      googleBot: {
+        index: indexable,
+        follow: indexable
+      }
+    },
+    openGraph: {
+      locale: ogLocaleById[params.locale],
+      images: url
+        ? [
+            {
+              url,
+              width,
+              height,
+              alt
+            }
+          ]
+        : null
+    }
   };
 }
-
-// export async function generateMetadata({
-//   params
-// }) {
-//   const product = await getProduct(params.handle);
-
-//   if (!product) return notFound();
-
-//   const { url, width, height, altText: alt } = product.featuredImage || {};
-//   const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
-
-//   return {
-//     title: product.seo.title || product.title,
-//     description: product.seo.description || product.description,
-//     robots: {
-//       index: indexable,
-//       follow: indexable,
-//       googleBot: {
-//         index: indexable,
-//         follow: indexable
-//       }
-//     },
-//     openGraph: url
-//       ? {
-//           images: [
-//             {
-//               url,
-//               width,
-//               height,
-//               alt
-//             }
-//           ]
-//         }
-//       : null
-//   };
-// }
 
 export default async function ProductPage({ params }) {
   const product = await getProduct(params.handle);
