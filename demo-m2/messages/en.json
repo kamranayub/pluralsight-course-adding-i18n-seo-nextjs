@@ -39,5 +39,9 @@
         "title": "Not found",
         "body": "The resource you're looking for was not found.",
         "returnHome": "Return to homepage"
+    },
+    "OpenGraph": {
+        "heading": "Pluralsight Commerce",
+        "subheading": "A demo app for learning Next.js"
     }
 }

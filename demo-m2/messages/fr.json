@@ -39,5 +39,9 @@
         "title": "Non trouvé",
         "body": "La ressource que vous recherchez est introuvable.",
         "returnHome": "Retour à la page d'accueil"
+    },
+    "OpenGraph": {
+        "heading": "Pluralsight Commerce",
+        "subheading": "Une application de démonstration pour apprendre Next.js"
     }
 }
