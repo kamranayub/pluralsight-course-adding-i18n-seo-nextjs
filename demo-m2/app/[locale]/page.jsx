@@ -40,6 +40,16 @@ export async function generateMetadata({ params }) {
         follow: indexable
       }
     },
+    alternates: {
+      canonical: `https://pluralsight.demo/product/${product.handle}`,
+      languages: routing.locales.reduce(
+        (languages, locale) => ({
+          ...languages,
+          [locale]: `https://pluralsight.demo/${locale}/product/${product.handle}`
+        }),
+        {}
+      )
+    },
     openGraph: {
       locale: ogLocaleById[params.locale],
       images: url

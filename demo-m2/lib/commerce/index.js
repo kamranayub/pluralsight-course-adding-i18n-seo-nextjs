@@ -759,6 +759,16 @@ export function getMenu(menuId) {
   return Promise.resolve([]);
 }
 
+export function getProductCount() {
+  return Promise.resolve(mockProductsEn.length);
+}
+
+export async function getProducts(start = 0, end = 100, defaultLocale = 'en') {
+  const locale = defaultLocale || (await getLocale());
+  const mockProducts = locale === 'fr' ? mockProductsFr : mockProductsEn;
+  return mockProducts.map(p => reshapeProduct(p));
+}
+
 export async function getProduct(productHandle) {
   const locale = await getLocale();
   const mockProducts = locale === 'fr' ? mockProductsFr : mockProductsEn;
