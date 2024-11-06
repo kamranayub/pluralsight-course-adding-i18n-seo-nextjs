@@ -4,6 +4,7 @@ This repository is for the Pluralsight course **[Adding Internationalization and
 
 [![Course overview screenshot]($COURSE_HERO_IMAGE$)](https://bit.ly/PSNextJSIntlSEO)
 
+> Expanding a website to a global audience isn’t just about translation—it involves tailoring the user experience and optimizing visibility across different regions. In this course, Adding Internationalization and SEO to Next.js 14, you’ll learn to enhance your Next.js application to effectively reach global users and improve its discoverability. First, you’ll explore how to support multiple languages with the Next.js app router from the perspective of an e-commerce site. Next, you’ll discover how to make internationalization easier using next-intl. Finally, you’ll learn how to customize SEO metadata, like creating dynamic social sharing images and richer search results. When you’re finished with this course, you’ll have the skills and knowledge to implement internationalization and SEO strategies to extend your application’s reach and performance.
 
 ## Table of Contents
 
